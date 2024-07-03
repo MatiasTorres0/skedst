@@ -1,0 +1,7 @@
+{
+  "name": "Skedst",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
