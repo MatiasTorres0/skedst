@@ -1,0 +1,7 @@
+<?xml version='1.1' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Skedst</string>
+    <string name="title_activity_main">Skedst</string>
+    <string name="package_name">io.ionic.starter</string>
+    <string name="custom_url_scheme">io.ionic.starter</string>
+</resources>

@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Nuestra Historia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nuestra Historia</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-content>
+      <form (submit)="uploadVideo($event)">
+        <ion-item lines="none">
+          <ion-label position="stacked">Seleccionar Video</ion-label>
+          <ion-input type="file" (change)="onFileSelected($event)" accept="video/*"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="block" class="ion-margin-top" [disabled]="isUploading">Subir Video</ion-button>
+      </form>
+
+      <div *ngIf="uploadProgress | async as progress">
+        <ion-progress-bar [value]="progress / 100"></ion-progress-bar>
+        <p class="ion-text-center">{{ progress | number:'1.0-0' }}% completado</p>
+        <ion-button expand="block" (click)="cancelUpload()" color="danger">Cancelar subida</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let url of videoUrls">
+    <ion-card-content>
+      <video controls playsinline style="width: 100%; max-height: 70vh; object-fit: contain;">
+        <source [src]="url" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+      </video>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Categorías del Supermercado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item button *ngFor="let categoria of categorias | async">
+      <ion-icon [name]="categoria.icono" slot="start"></ion-icon>
+      <ion-label>{{categoria.nombre}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

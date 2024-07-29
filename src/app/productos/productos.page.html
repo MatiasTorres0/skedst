@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Productos a 1000</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="grid-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [formControl]="searchControl" placeholder="¿Qué producto buscas hoy?"></ion-searchbar>
+
+  <ion-segment value="todos">
+    <ion-segment-button value="todos">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="chocolates">
+      <ion-label>Chocolates galletas y colaciones a 1000</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let producto of productos$ | async">
+        <ion-card *ngIf="producto">
+          <img [src]="producto.imagen1" alt="Imagen de {{producto.nombre}}" />
+          <ion-card-header>
+            <ion-card-subtitle>{{ producto.marca || 'Sin marca' }}</ion-card-subtitle>
+            <ion-card-title>{{ producto.nombre || 'Producto sin nombre' }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>${{ producto.precio_oferta || 'Sin precio' }}</p>
+            <p *ngIf="producto.precio_normal">Precio habitual ${{ producto.precio_normal }}</p>
+            <p *ngIf="producto.ahorro">Ahorra ${{ producto.ahorro }}</p>
+            <ion-button expand="block" (click)="addToCart(producto)">Agregar</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
